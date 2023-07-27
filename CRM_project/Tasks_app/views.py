@@ -8,7 +8,10 @@ from rest_framework.views import APIView
 from rest_framework.permissions import *
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny,IsAdminUser,IsAuthenticated
 from rest_framework import generics
+from rest_framework import permissions
+
 
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -18,10 +21,12 @@ from django.contrib.auth.hashers import make_password, check_password
 class CreateTasks(generics.ListCreateAPIView):
     serializer_class=task_serializer
     queryset = TaskModels.objects.all()
+    permission_classes = (IsAdminUser,IsAuthenticated )    
+
 
 
 class CreateTasks(APIView):
-    permission_classes = (IsAdminUser, )    
+    permission_classes = (IsAuthenticated, )    
     serializer_class =task_serializer
 
     def post(self, request):
@@ -34,7 +39,6 @@ class CreateTasks(APIView):
             return Response("error occuer")
     def get(self,request):
         try:
-            
             user  = TaskModels.objects.all()
             ser = task_serializer(data=user,many=True)
             ser.is_valid()

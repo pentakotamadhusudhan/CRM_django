@@ -13,7 +13,7 @@ from GenericResponse import returnresponse
 from django.contrib.auth.hashers import make_password, check_password
 
 class RegisterView(APIView):
-    permission_classes = (IsAdminUser,IsAuthenticated )    
+    permission_classes = [IsAdminUser]
     serializer_class = regserialzer
     
     def post(self, request):
@@ -40,7 +40,8 @@ class RegisterView(APIView):
 class UserUpdate(generics.GenericAPIView):
     serializer_class =regserialzer
     queryset = Account.objects.all()
-    permission_classes = (IsAdminUser, )
+    permission_classes = [IsAdminUser]    
+
 
     def get(self, request,id):
         user = Account.objects.get(id=id)
@@ -52,9 +53,11 @@ class UserUpdate(generics.GenericAPIView):
        return Response(user)
 
 class SuperUser(generics.CreateAPIView):
-    
     serializer_class = SuperAdminserializer
     query_set = User.objects.all()
+    permission_classes = [IsAdminUser,]   
+
+
     def post(self, request):
         try:
            user = User()

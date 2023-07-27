@@ -74,7 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CRM_project.wsgi.application'
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'   
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.IsAdminUser',),   
 }
 
 # Database
