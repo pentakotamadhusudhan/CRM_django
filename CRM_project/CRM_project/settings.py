@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
-    "rest_framework.authtoken",
     'user_dashboard',
     "Tasks_app",
     'drf_yasg',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CRM_project.wsgi.application'
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
-    'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.IsAdminUser',),   
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),   
 }
 
 # Database
