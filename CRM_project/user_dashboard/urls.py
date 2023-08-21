@@ -26,7 +26,5 @@ urlpatterns = [
     path('register',RegisterView.as_view(),),
     path('register/<int:id>', UserUpdate.as_view(), name='api-register'),
     path('super', SuperUser.as_view(), name='Super-admin'),
-    # path('super/<int:id>', RegisterView.as_view(), name='Super-admin'),
-    
-   
+    # path('super/<int:id>', RegisterView.as_view(), name='Super-admin'),   
 ]

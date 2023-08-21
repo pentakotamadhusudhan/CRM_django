@@ -13,44 +13,55 @@ from GenericResponse import returnresponse
 from django.contrib.auth.hashers import make_password, check_password
 
 class RegisterView(APIView):
-    permission_classes = [IsAdminUser]
     serializer_class = regserialzer
+    queryset = Account.objects.all()
+
+    
     
     def post(self, request):
         try:
             ser = regserialzer(data=request.data)
             ser.is_valid()
             ser.save()
-            print(returnresponse(data=ser.data,status_code=200,message="Success",))
+            # print((data=ser.data,status_code=200,message="Success",))
             return Response(ser.data)
         except : 
             return Response("error occuer")
     def get(self,request):
-        try:
-            
-            user  = Account.objects.all()
-            x = returnresponse(data=user,status_code=200,message="Success",)
-            x = [x,]
-            return Response({'data':x})
-        except:
-            return Response({
-                "Result":"Somethinging went wrong"
-            })
-
+        
+        user = Account.objects.all()
+        ser = regserialzer(data=user, many=True)
+        ser.is_valid()
+        return Response(data={"message": ser.data}, status=status.HTTP_201_CREATED)
+    
 class UserUpdate(generics.GenericAPIView):
     serializer_class =regserialzer
     queryset = Account.objects.all()
-    permission_classes = [IsAdminUser]    
+    # permission_classes = [IsAdminUser]    
 
 
     def get(self, request,id):
         user = Account.objects.get(id=id)
         return Response(data={"message": regserialzer(user).data}, status=status.HTTP_201_CREATED)
     
-    def put(request,self,id):
+    def delete(self,request,id):
+       user = Account.objects.get(id=id).delete()
+       return Response("user has been deleted", status=status.HTTP_200_OK)
+    
+    def put(self,request,id):
        user = Account.objects.get(id=id)
-       print(user.email)
-       return Response(user)
+       user.name = request.data.get('name')
+       user.email=request.data.get('email')
+       user.password = request.data.get('password')
+       user.role = request.data.get('role')
+       user.save()
+    #    print("--------------------------------",user)
+    #    ser = regserialzer(instance=user,data=request.data)
+    #    ser.is_valid()
+    #    ser.save()
+    #    print(ser.data)
+    #    print(user.email)
+       return Response(regserialzer(user).data)
 
 class SuperUser(generics.CreateAPIView):
     serializer_class = SuperAdminserializer
