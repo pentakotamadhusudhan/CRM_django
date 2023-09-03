@@ -23,7 +23,7 @@ def returnresponse(status_code,data,message=None):
         response['status_code'] = status_code
         response['data'] = data
         response['message'] =message
-        response['hash'] = False
+        response['hash'] = True
         return response
     elif status_code==401:
         response['status_code'] = status_code
@@ -32,7 +32,6 @@ def returnresponse(status_code,data,message=None):
         response['hash'] = True
         return response
     else:
-       
         response['status_code'] = 500
         response['data'] = None
         response['message'] ="Failed"

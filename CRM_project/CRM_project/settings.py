@@ -28,10 +28,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'user_dashboard',
     "Tasks_app",
     'drf_yasg',
+    'corsheaders',
    
 ]
 
@@ -146,3 +148,18 @@ PASSWORD_HASHERS = [
   'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
   'django.contrib.auth.hashers.CryptPasswordHasher',
 ]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://192.168.1.8:8000",
+    
+]
+
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER='pentakotamadhu74@gmail.com'
+EMAIL_HOST_PASSWORD='zeessplybekssplu'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
