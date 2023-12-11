@@ -84,12 +84,24 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': "CRM_Table",
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': "CRM_Table",
+#     }
+# }
+
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'djongo',  
+        'NAME': 'test',  
+        'USER':'madhu',  
+        'PASSWORD':'Madhu@12',  
+        'HOST':'mongodb+srv://Madhu:Madhu@12@atlascluster.ecrcglp.mongodb.net/?retryWrites=true&w=majority',  
+        'PORT':'27017',
+        "authMechanism":'SCRAM-SHA-1'
+    }  
+}  
 
 
 # Password validation
