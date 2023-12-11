@@ -83,12 +83,16 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'Django_practice',
-        'HOST': 'mongodb+srv://Madhu:Madhu%4012@atlascluster.ecrcglp.mongodb.net/',
-        'ENFORCE_SCHEMA': False
-    }
+    "default": {
+    "ENGINE": "djongo",
+    "CLIENT": {
+        "host": "mongodb+srv://Madhu:Madhu%4012@atlascluster.ecrcglp.mongodb.net/?authMechanism=SCRAM-SHA-1",
+        "username": "Madhu",
+        "password": "Madh@12",
+        "name": "Texst",
+        "authMechanism": "SCRAM-SHA-1",
+    },
+}
 }
 
 
