@@ -83,9 +83,11 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+     'default': {
         'ENGINE': 'djongo',
-        'NAME': "CRM_Table",
+        'NAME': 'Django_practice',
+        'HOST': 'mongodb+srv://Madhu:Madhu%4012@atlascluster.ecrcglp.mongodb.net/',
+        'ENFORCE_SCHEMA': False
     }
 }
 
